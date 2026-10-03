@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cat Clicker 2</title>
+  </head>
+  <body>
+    <main>
+      <h1>Cat Clicker 2</h1>
+      <section>
+        <h2>Michi</h2>
+        <button type="button" aria-label="Acariciar a Michi">
+          <img src="../imagen/Liko.jpg" alt="Liko">
+        </button>
+        <p>Clicks: <span aria-live="polite">0</span></p>
+      </section>
+      <section>
+        <h2>Luna</h2>
+        <button type="button" aria-label="Acariciar a Luna">
+          <img src="../imagen/Lupa.avif" alt="Lupa">
+        </button>
+        <p>Clicks: <span aria-live="polite">0</span></p>
+      </section>
+    </main>
+    <script>
+      document.querySelectorAll("section").forEach((cat) => {
+        const catButton = cat.querySelector("button");
+        const clickCount = cat.querySelector("span");
+        let clicks = 0;
+
+        catButton.addEventListener("click", () => {
+          clicks += 1;
+          clickCount.textContent = clicks.toLocaleString("es");
+        });
+      });
+    </script>
+  </body>
+</html>
