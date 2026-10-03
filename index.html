@@ -4,18 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cat Clicker</title>
-    <script src="script.js" defer></script>
   </head>
   <body>
     <main>
       <h1>Cat Clicker</h1>
       <button id="cat-button" type="button" aria-label="Acariciar al gato">
         <img
-          src="https://i.pinimg.com/236x/53/be/e0/53bee06d63872244262b37d4ae86c1b6.jpg"
-          alt="Gato"
+          src="../imagen/Liko.jpg"
+          alt="Liko"
         >
       </button>
       <p>Clicks: <span id="click-count" aria-live="polite">0</span></p>
     </main>
+    <script>
+      const catButton = document.querySelector("#cat-button");
+      const clickCount = document.querySelector("#click-count");
+
+      let clicks = 0;
+
+      catButton.addEventListener("click", () => {
+        clicks += 1;
+        clickCount.textContent = clicks.toLocaleString("es");
+      });
+    </script>
   </body>
 </html>
