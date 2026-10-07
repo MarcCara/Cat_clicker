@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cat Clicker 2</title>
+  </head>
+  <body>
+    <img id="gat1" src="Liko.jpg" alt="Liko">
+    <h3 id="contador1">0</h3>
+
+    <img id="gat2" src="Lupa.jpg" alt="Lupa">
+    <h3 id="contador2">0</h3>
+
+    <script>
+      let cont1 = 0;
+      let cont2 = 0;
+
+      document.getElementById("gat1").addEventListener("click", function () {
+        cont1++;
+        document.getElementById("contador1").textContent = cont1;
+      });
+
+      document.getElementById("gat2").addEventListener("click", function () {
+        cont2++;
+        document.getElementById("contador2").textContent = cont2;
+      });
+    </script>
+  </body>
+</html>
