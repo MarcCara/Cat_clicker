@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="llista"></ul>
+    <img id="imgGat" src="" alt="">
+    <h3 id="nomActual"></h3>
+    <h3 id="contActual"></h3>
+    
+</body>
+
+<script>
+    let data = {
+        catActive: 0,
+        gatos: [
+            { name: "Michifu",  image: "img/cat1.jpg", nclicks: 0 },
+            { name: "Minino",  image: "img/cat2.jpg", nclicks: 0 },
+            { name: "Garfield",  image: "img/cat3.jpg", nclicks: 0 },
+            { name: "LindoGatito", image: "img/cat4.jpg", nclicks: 0 }
+        ]
+    };
+
+    function mostrarGat(id){
+        //ACTUALITZO EL ID perque ho farem servir despres!!
+        data.catActive=id
+        document.getElementById("imgGat").src=data.gatos[id].image
+        document.getElementById("nomActual").innerHTML=data.gatos[id].name;
+        document.getElementById("contActual").innerHTML=data.gatos[id].nclicks;
+
+    }
+
+    //CONSTRUEIXO UNA LLISTA DINAMICA DE NOMS
+    htmlStr=""
+    data.gatos.forEach((element,index) => {       
+        htmlStr += `<li id='${index}'>${element.name}</li>`    
+    });
+    document.getElementById("llista").innerHTML=htmlStr;
+
+/*
+    Versió amb for tradicional, que es un amica mes llarga
+    for (let index = 0; index < data.gatos.length; index++) {
+        const element = data.gatos[index];
+        htmlStr += `<li>${element.name}</li>`        
+    }
+    document.getElementById("llista").innerHTML=htmlStr;
+
+*/
+ 
+    //AFEGEIXO UN LISTENER AMB DELEGACIO D'EVENTS ALS NOMS
+    document.getElementById("llista").addEventListener("click",function(e){
+        console.log("has apretat al gat en la llista" + e.target.id)
+        mostrarGat(e.target.id)
+
+    })
+
+    //AFEGEIXO UN LISTENER AL GAT
+    document.getElementById("imgGat").addEventListener("click",function(){
+      data.gatos[data.catActive].nclicks++;
+      //mostrarGat(data.catActive)
+        document.getElementById("contActual").innerHTML=data.gatos[data.catActive].nclicks;
+    })
+
+    
+</script>
+</html>

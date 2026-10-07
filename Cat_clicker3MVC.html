@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="llista"></ul>
+    <img id="imgGat" src="" alt="">
+    <h3 id="nomActual"></h3>
+    <h3 id="contActual"></h3>
+    
+</body>
+
+<script>
+     let data = {
+        catActive: 0,
+        ncats: 4,
+        gatos: [
+            { name: "Michifu", content: "lorem", image: "img/cat.jpg", nclicks: 0 },
+            { name: "Minino", content: "lorem2", image: "img/cat2.jpg", nclicks: 0 },
+            { name: "Garfield", content: "lorem", image: "img/cat3.jpg", nclicks: 0 },
+            { name: "Garfield", content: "lorem", image: "img/cat4.jpg", nclicks: 0 }
+        ]
+    };
+
+    let model = {
+        //si no estÃ¡ inicializado el localstorage lo arrancas
+        init: function() {
+            
+        },
+        funcion2: function(obj) {
+        }
+
+
+    };
+
+
+    let controller = {
+        funcionXXX: function(noteStr) {
+           
+            view.render();
+        },
+
+        funcionYYY: function() {
+            
+        },
+
+        init: function() {
+            model.init();
+            view.init();
+        }
+    };
+
+
+    let view = {
+        init: function() {
+            //Seleccionar los ids y llevarmelos a varaibles (opcional)
+            
+
+            //Inicializar los eventos que hacer cuando pase...
+
+            //Llamar a la funcion que pinta la lista (render)
+            //Llamar a la funcion que pinta el gato actual (render)
+           
+            view.render();
+        },
+        renderGato: function(){
+            //Generar dinamicamente el codigo html             
+            var htmlStr = '';
+            //Recordad que para acceder a datos hablamos con el controller
+            controller.getGatos().forEach(function(note){
+                htmlStr += '<li class="note">'+
+                        note.content +
+                    '</li>';
+            });
+            this.noteList.html( htmlStr );
+        }
+    };
+
+    controller.init();
+</script>
