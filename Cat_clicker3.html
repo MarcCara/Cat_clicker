@@ -17,10 +17,10 @@
     let data = {
         catActive: 0,
         gatos: [
-            { name: "Michifu",  image: "img/cat1.jpg", nclicks: 0 },
-            { name: "Minino",  image: "img/cat2.jpg", nclicks: 0 },
-            { name: "Garfield",  image: "img/cat3.jpg", nclicks: 0 },
-            { name: "LindoGatito", image: "img/cat4.jpg", nclicks: 0 }
+            { name: "Pick",  image: "imagen/Pick.jpg", nclicks: 0 },
+            { name: "PACO",  image: "imagen/PACO.jpg", nclicks: 0 },
+            { name: "Lupa",  image: "imagen/Lupa.jpg", nclicks: 0 },
+            { name: "Liri", image: "imagen/Liri.jpg", nclicks: 0 }
         ]
     };
 
@@ -39,6 +39,7 @@
         htmlStr += `<li id='${index}'>${element.name}</li>`    
     });
     document.getElementById("llista").innerHTML=htmlStr;
+    mostrarGat(0);
 
 /*
     Versió amb for tradicional, que es un amica mes llarga
