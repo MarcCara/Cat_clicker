@@ -10,74 +10,127 @@
     <img id="imgGat" src="" alt="">
     <h3 id="nomActual"></h3>
     <h3 id="contActual"></h3>
-    
 </body>
-
 <script>
-     let data = {
+
+let data = {
         catActive: 0,
         ncats: 4,
         gatos: [
-            { name: "Michifu", content: "lorem", image: "img/cat.jpg", nclicks: 0 },
-            { name: "Minino", content: "lorem2", image: "img/cat2.jpg", nclicks: 0 },
-            { name: "Garfield", content: "lorem", image: "img/cat3.jpg", nclicks: 0 },
-            { name: "Garfield", content: "lorem", image: "img/cat4.jpg", nclicks: 0 }
+            { name: "Pick",  image: "imagen/Pick.jpg", nclicks: 0 },
+            { name: "PACO",  image: "imagen/PACO.jpg", nclicks: 0 },
+            { name: "Lupa",  image: "imagen/Lupa.jpg", nclicks: 0 },
+            { name: "Liri", image: "imagen/Liri.jpg", nclicks: 0 }
         ]
     };
 
     let model = {
         //si no estÃ¡ inicializado el localstorage lo arrancas
         init: function() {
-            
+            //AQUI NO HAY QUE HACER
         },
-        funcion2: function(obj) {
+        getGatos: function() {
+            return data.gatos;
+        },
+        getGatoActual: function(){
+            return data.gatos[data.catActive];
+        },
+        canviGat: function(id){
+            data.catActive=id;
+        },
+        clickGato: function(){
+            data.gatos[data.catActive].nclicks++;
         }
-
-
     };
 
-
     let controller = {
-        funcionXXX: function(noteStr) {
-           
-            view.render();
+        canviGat: function(id){
+            //Actualitzo les dades
+            model.canviGat(id);
+            //Repinto
+            view.renderGatoActual();
         },
-
-        funcionYYY: function() {
-            
+        clickGato:function(){
+            //actualitzo les dades
+            model.clickGato();
+            //repinto
+            view.renderGatoActual();
         },
-
+        getGatos: function() {           
+            return model.getGatos();
+        },
+        getGatoActual: function(){
+            return model.getGatoActual();
+        },
         init: function() {
             model.init();
             view.init();
         }
     };
 
-
     let view = {
         init: function() {
-            //Seleccionar los ids y llevarmelos a varaibles (opcional)
-            
+            view.renderLlista();
+            view.renderGatoActual(); 
 
-            //Inicializar los eventos que hacer cuando pase...
+            //AFEGEIXO UN LISTENER AL GAT
+            document.getElementById("imgGat").addEventListener("click",function(){
+                controller.clickGato();                
+            })
 
-            //Llamar a la funcion que pinta la lista (render)
-            //Llamar a la funcion que pinta el gato actual (render)
-           
-            view.render();
         },
-        renderGato: function(){
-            //Generar dinamicamente el codigo html             
-            var htmlStr = '';
-            //Recordad que para acceder a datos hablamos con el controller
-            controller.getGatos().forEach(function(note){
-                htmlStr += '<li class="note">'+
-                        note.content +
-                    '</li>';
-            });
-            this.noteList.html( htmlStr );
-        }
+        renderLlista: function(){
+            let datos=controller.getGatos();
+            htmlStr=""
+                datos.forEach((element,index) => {       
+                    htmlStr += `<li id='${index}'>${element.name}</li>`    
+                });
+                document.getElementById("llista").innerHTML=htmlStr;
+
+                 document.getElementById("llista").addEventListener("click",function(e){
+                    console.log("has apretat al gat en la llista" + e.target.id)
+                    controller.canviGat(e.target.id)
+                })
+        },
+        renderGatoActual: function(){
+            let datosGatoActual =  controller.getGatoActual();
+            document.getElementById("imgGat").src=datosGatoActual.image
+            document.getElementById("nomActual").innerHTML=datosGatoActual.name;
+            document.getElementById("contActual").innerHTML=datosGatoActual.nclicks;
+        },
+
+    
     };
 
     controller.init();
+
+
+//CODI ANTIC 
+/*
+    
+
+ 
+    //CONSTRUEIXO UNA LLISTA DINAMICA DE NOMS
+    
+
+/*
+    Versió amb for tradicional, que es un amica mes llarga
+    for (let index = 0; index < data.gatos.length; index++) {
+        const element = data.gatos[index];
+        htmlStr += `<li>${element.name}</li>`        
+    }
+    document.getElementById("llista").innerHTML=htmlStr;
+
+
+ 
+
+    //AFEGEIXO UN LISTENER AL GAT
+    document.getElementById("imgGat").addEventListener("click",function(){
+      data.gatos[data.catActive].nclicks++;
+      //mostrarGat(data.catActive)
+        document.getElementById("contActual").innerHTML=data.gatos[data.catActive].nclicks;
+    })
+
+    */
 </script>
+</html>
